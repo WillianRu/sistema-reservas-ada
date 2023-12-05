@@ -3,7 +3,7 @@ package org.adaschool.sistemareservasada.domain.repository;
 import org.adaschool.sistemareservasada.domain.entity.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserAccount, Integer> {
+public interface UserAccountRepository extends JpaRepository<UserAccount, Integer> {
      /*
     Consultas JPQL
     Consultas SQL Nativas

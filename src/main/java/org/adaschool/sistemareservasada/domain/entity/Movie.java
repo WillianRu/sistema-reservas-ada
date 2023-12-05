@@ -1,10 +1,7 @@
 package org.adaschool.sistemareservasada.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -12,6 +9,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @AllArgsConstructor
+@Builder
 
 @Entity
 @Table(name="movie")
@@ -21,19 +19,19 @@ public class Movie {
     Integer id;
 
     String name;
-    String genero;
-    Integer movieLengthMinuts;
+    String genre;
+    Integer movieLengthMinutes;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
-        return Objects.equals(id, movie.id) && Objects.equals(name, movie.name) && Objects.equals(genero, movie.genero) && Objects.equals(movieLengthMinuts, movie.movieLengthMinuts);
+        return Objects.equals(id, movie.id) && Objects.equals(name, movie.name) && Objects.equals(genre, movie.genre) && Objects.equals(movieLengthMinutes, movie.movieLengthMinutes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, genero, movieLengthMinuts);
+        return Objects.hash(id, name, genre, movieLengthMinutes);
     }
 }

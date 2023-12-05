@@ -12,6 +12,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @AllArgsConstructor
+@Builder
 
 public class UserAccount {
     @Id
