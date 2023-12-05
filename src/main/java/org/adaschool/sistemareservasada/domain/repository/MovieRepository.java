@@ -1,10 +1,11 @@
 package org.adaschool.sistemareservasada.domain.repository;
 
-import org.adaschool.sistemareservasada.domain.entity.UserAccount;
+import org.adaschool.sistemareservasada.domain.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserAccount, Integer> {
-     /*
+public interface MovieRepository extends JpaRepository <Movie, Integer> {
+
+    /*
     Consultas JPQL
     Consultas SQL Nativas
 
