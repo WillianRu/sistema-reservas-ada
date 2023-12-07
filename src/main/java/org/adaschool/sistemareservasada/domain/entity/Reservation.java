@@ -10,6 +10,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 
 @Entity

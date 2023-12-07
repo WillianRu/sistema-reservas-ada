@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -18,4 +18,10 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
+    application:
+      security:
+        jwt:
+          secret-key: d5608c2a97c84dd0c0e0374ab865a131e0305df3f642ff83a03d796d748ac251
+          expiration: 86400000 # a day
+          refresh-token:
+            expiration: 604800000 # 7 days

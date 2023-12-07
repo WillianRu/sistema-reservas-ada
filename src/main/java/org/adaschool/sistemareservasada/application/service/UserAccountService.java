@@ -12,6 +12,8 @@ public record UserAccountService(UserAccountRepository userAccountRepository) {
                 .name(userAccountDTO.name())
                 .phoneNumber(userAccountDTO.phoneNumber())
                 .email(userAccountDTO.email())
+                .password(userAccountDTO.password())
+                .enable(userAccountDTO.enable())
                 .build();
         userAccountRepository.save(userAccount);
     }

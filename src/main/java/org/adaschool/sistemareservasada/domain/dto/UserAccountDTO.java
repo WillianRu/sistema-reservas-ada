@@ -6,5 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public record UserAccountDTO(
     String name,
     Integer phoneNumber,
-    String email
+    String email,
+    String password,
+    Boolean enable
 ) {}

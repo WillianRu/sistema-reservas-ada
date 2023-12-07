@@ -2,19 +2,24 @@ package org.adaschool.sistemareservasada.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.adaschool.sistemareservasada.application.lasting.ERole;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="userAccount")
+@Table(name="userAccount", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 
-public class UserAccount {
+public class UserAccount implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
@@ -22,6 +27,11 @@ public class UserAccount {
     String name;
     Integer phoneNumber;
     String email;
+    String password;
+    Boolean enable;
+
+    @Enumerated(EnumType.ORDINAL)
+    private ERole role;
 
     @Override
     public boolean equals(Object o) {
@@ -34,6 +44,41 @@ public class UserAccount {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, phoneNumber, email);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enable;
     }
 }
 
