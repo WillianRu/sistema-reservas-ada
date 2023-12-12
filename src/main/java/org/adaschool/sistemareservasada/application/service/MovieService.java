@@ -13,7 +13,6 @@ public record MovieService(MovieRepository movieRepository) {
                 .genre(movieDTO.genre())
                 .movieLengthMinutes(movieDTO.movieLengthMinutes())
                 .build();
-        // llamar a la interface del repository save
         movieRepository.save(movie);
     }
 }

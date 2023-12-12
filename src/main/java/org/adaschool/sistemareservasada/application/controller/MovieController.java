@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/movie")
 public record MovieController(MovieService movieService) {
-    /*
-    Crear un endpoint POST para recibir una entidad Movie
-    Return response status | HTTP.Status.CREATED
-     */
-
     @PostMapping
     public ResponseEntity<?> registerMovie(@RequestBody MovieDTO movieDTO){
         movieService.createMovie(movieDTO);

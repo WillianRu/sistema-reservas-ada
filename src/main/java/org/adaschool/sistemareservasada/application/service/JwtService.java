@@ -41,7 +41,7 @@ public record JwtService(
                 .setExpiration(Date.from(
                         LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().plusMillis(expiration)
                 ))
-                .signWith(getSignedKey(), SignatureAlgorithm.HS256)
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
     public String extractUserName (String token){
@@ -54,16 +54,17 @@ public record JwtService(
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getSignedKey())
+                .setSigningKey(getSignInKey())
                 .build()
-                .parsePlaintextJws(token)
-                .getBody()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
-    private Key getSignedKey() {
+    private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String userName = extractUserName(token);
