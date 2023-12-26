@@ -23,8 +23,7 @@ public class UserAccount implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
-    String name;
+    String userAccount_name;
     Integer phoneNumber;
     String email;
     String password;
@@ -38,12 +37,12 @@ public class UserAccount implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount user = (UserAccount) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(phoneNumber, user.phoneNumber) && Objects.equals(email, user.email);
+        return Objects.equals(id, user.id) && Objects.equals(userAccount_name, user.userAccount_name) && Objects.equals(phoneNumber, user.phoneNumber) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phoneNumber, email);
+        return Objects.hash(id, userAccount_name, phoneNumber, email);
     }
 
     @Override

@@ -20,8 +20,14 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String movieName;
-    String userName;
+    @ManyToOne
+    @JoinColumn(name = "movie_name") // Nombre de la columna que representa la relación con Movie
+    String movie_name;
+
+    @ManyToOne
+    @JoinColumn(name = "userAccount_name") // Nombre de la columna que representa la relación con UserAccount
+    String userAccount_name;
+
     Date reservationDate;
     Integer seatsNumber;
 
@@ -30,11 +36,11 @@ public class Reservation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return Objects.equals(id, that.id) && Objects.equals(movieName, that.movieName) && Objects.equals(userName, that.userName) && Objects.equals(reservationDate, that.reservationDate) && Objects.equals(seatsNumber, that.seatsNumber);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, movieName, userName, reservationDate, seatsNumber);
+        return Objects.hash(id);
     }
 }

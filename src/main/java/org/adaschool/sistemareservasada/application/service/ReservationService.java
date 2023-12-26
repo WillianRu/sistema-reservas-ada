@@ -10,8 +10,8 @@ public record ReservationService(ReservationRepository reservationRepository) {
 
     public void createReservation(ReservationDTO reservationDTO){
         Reservation reservation = Reservation.builder()
-                .movieName(reservationDTO.movieName())
-                .userName(reservationDTO.userName())
+                .movie_name(reservationDTO.movieName())
+                .userAccount_name(reservationDTO.userName())
                 .reservationDate(reservationDTO.reservationDate())
                 .seatsNumber(reservationDTO.seatsNumber())
                 .build();

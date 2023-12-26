@@ -18,8 +18,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
-    String name;
+    String movie_name;
     String genre;
     Integer movieLengthMinutes;
 
@@ -28,11 +27,11 @@ public class Movie {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
-        return Objects.equals(id, movie.id) && Objects.equals(name, movie.name) && Objects.equals(genre, movie.genre) && Objects.equals(movieLengthMinutes, movie.movieLengthMinutes);
+        return Objects.equals(id, movie.id) && Objects.equals(movie_name, movie.movie_name) && Objects.equals(genre, movie.genre) && Objects.equals(movieLengthMinutes, movie.movieLengthMinutes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, genre, movieLengthMinutes);
+        return Objects.hash(id, movie_name, genre, movieLengthMinutes);
     }
 }
