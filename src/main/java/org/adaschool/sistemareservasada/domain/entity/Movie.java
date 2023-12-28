@@ -3,6 +3,7 @@ package org.adaschool.sistemareservasada.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -22,6 +23,10 @@ public class Movie {
     String name;
     String genre;
     Integer movieLengthMinutes;
+
+    //Relaciones muchos a uno
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
     @Override
     public boolean equals(Object o) {

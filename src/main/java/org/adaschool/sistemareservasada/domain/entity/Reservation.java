@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -19,6 +20,14 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id") //
+    private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name = "UserAccount_id") //
+    private UserAccount userAccount;
 
     String movieName;
     String userName;

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +30,10 @@ public class UserAccount implements UserDetails {
     String email;
     String password;
     Boolean enable;
+
+    //Relaciones muchos a uno
+    @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
     @Enumerated(EnumType.ORDINAL)
     private ERole role;
