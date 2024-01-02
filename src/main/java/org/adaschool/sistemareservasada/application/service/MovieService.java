@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public record MovieService(MovieRepository movieRepository) {
-    public void createMovie(MovieDTO movieDTO){
+
+    public void createMovie(MovieDTO movieDTO) {
         Movie movie = Movie.builder()
                 .name(movieDTO.name())
                 .genre(movieDTO.genre())

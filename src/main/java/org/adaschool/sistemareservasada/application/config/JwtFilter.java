@@ -39,6 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
             UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
             setAuthenticationToContext(request, jwt, userDetails);
         }
+        filterChain.doFilter(request,response);
     }
 
     private void setAuthenticationToContext(HttpServletRequest request, String jwt, UserDetails userDetails) {

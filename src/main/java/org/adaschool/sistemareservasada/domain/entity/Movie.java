@@ -24,7 +24,7 @@ public class Movie {
     String genre;
     Integer movieLengthMinutes;
 
-    //Relaciones muchos a uno
+    //Relacion uno a muchos: Una pelicula puede tener muchas reservas
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 

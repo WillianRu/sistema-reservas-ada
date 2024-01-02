@@ -31,7 +31,7 @@ public class UserAccount implements UserDetails {
     String password;
     Boolean enable;
 
-    //Relaciones muchos a uno
+    //Relacion uno a muchos: Una usuario puede tener muchas reservas
     @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
