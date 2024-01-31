@@ -29,17 +29,19 @@ public class JwtFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
+
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request,response);
             return;
         }
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
+
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication()== null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
             setAuthenticationToContext(request, jwt, userDetails);
+            filterChain.doFilter(request,response);
         }
-        filterChain.doFilter(request,response);
     }
 
     private void setAuthenticationToContext(HttpServletRequest request, String jwt, UserDetails userDetails) {

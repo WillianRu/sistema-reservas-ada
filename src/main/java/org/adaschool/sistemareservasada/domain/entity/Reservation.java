@@ -26,9 +26,9 @@ public class Reservation {
     private Movie movie;
 
     //Relacion muchos a uno: Varias usuarips pueden pertenecer a una reserva
-    @ManyToOne
-    @JoinColumn(name = "userAccount_id") //
-    private UserAccount userAccount;
+//    @ManyToOne
+//    @JoinColumn(name = "userAccount_id") //
+//    private UserAccount userAccount;
 
     Date reservationDate;
     Integer seatsNumber;
