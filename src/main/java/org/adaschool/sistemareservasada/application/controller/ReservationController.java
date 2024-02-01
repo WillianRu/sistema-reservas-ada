@@ -23,4 +23,16 @@ public record ReservationController(ReservationService reservationService) {
         List<ReservationDTO> reservations = reservationService.findAllReservations();
         return new ResponseEntity<>(reservations, HttpStatus.FOUND);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteReservation(@PathVariable Integer id) throws Exception{
+        reservationService.deleteReservation(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editReservation(@PathVariable("id") Integer id, @RequestBody ReservationDTO reservationDTO) throws Exception{
+        reservationService.editReservation(id, reservationDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
