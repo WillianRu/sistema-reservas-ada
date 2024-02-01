@@ -19,7 +19,7 @@ public record ReservationController(ReservationService reservationService) {
     }
 
     @GetMapping()
-    public ResponseEntity<?> findAllBooking(){
+    public ResponseEntity<?> findAllReservations(){
         List<ReservationDTO> reservations = reservationService.findAllReservations();
         return new ResponseEntity<>(reservations, HttpStatus.FOUND);
     }

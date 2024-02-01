@@ -16,32 +16,31 @@ public record MovieService(
 ) {
 
     public void createMovie(MovieDTO movieDTO) {
-        // Convertir MovieDTO a Movie usando el mapper
         Movie movie = mapper.toEntity(movieDTO);
         movieRepository.save(movie);
     }
 
-    public List<MovieDTO> getAllMovies() {
+    public List<MovieDTO> findAllMovies() {
         List<Movie> movies =  movieRepository.findAll();
         return mapper.toDtoList(movies);
     }
 
-    public MovieDTO getMovieById(Integer movieId) {
-        // Obtener la película por su ID y convertirla a MovieDTO
-        Movie movie = movieRepository.findById(movieId)
-                .orElseThrow(() -> new NoSuchElementException("Movie not found"));
+    public MovieDTO findMovieById(Integer id) throws Exception{
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new Exception("Movie not found"));
         return mapper.toDto(movie);
     }
 
-    public void updateMovie(Integer movieId, MovieDTO movieDTO) throws Exception {
-        movieRepository.findById(movieId).orElseThrow(()-> new Exception("DATA NOT FOUND"));
+    public void updateMovie(Integer id, MovieDTO movieDTO) throws Exception {
+        movieRepository.findById(id).orElseThrow(()-> new Exception("DATA NOT FOUND"));
         Movie movie = mapper.toEntity(movieDTO);
+        movie.setId(id);
         movieRepository.save(movie);
     }
 
-    public void deleteMovie(Integer movieId) {
-        Movie movieToDelete = movieRepository.findById(movieId)
-                .orElseThrow(() -> new NoSuchElementException("Movie not found"));
-        movieRepository.delete(movieToDelete);
+    public void deleteMovie(Integer id) throws Exception{
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new Exception("Movie not found"));
+        movieRepository.delete(movie);
     }
 }

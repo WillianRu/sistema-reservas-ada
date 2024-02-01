@@ -5,20 +5,12 @@ import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ReservationDTO(
+        Integer id,
         Integer movieId,
+        MovieDTO movie,
+        UserAccountDTO userAccount,
         Integer userAccountId,
         Date reservationDate,
         Integer seatsNumber
 ) {
-    public Integer getMovieId() {
-        return this.movieId;
-    }
-
-    public Integer getUserAccountId() {
-        return this.userAccountId;
-    }
-
-    public Integer getSeatsNumber() {
-        return this.seatsNumber;
-    }
 }

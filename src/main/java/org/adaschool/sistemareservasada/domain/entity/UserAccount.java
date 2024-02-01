@@ -33,7 +33,7 @@ public class UserAccount implements UserDetails {
     Boolean enable;
 
     //Relacion uno a muchos: Una usuario puede tener muchas reservas
-    @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userAccount")
     private List<Reservation> reservations;
 
 

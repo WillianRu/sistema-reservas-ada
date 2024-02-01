@@ -26,26 +26,25 @@ public record ReservationService(
 
 
     public void createReservation(ReservationDTO reservationDTO) {
-        // Obtener la película por su ID
-        Movie movie = movieRepository.findById(reservationDTO.getMovieId())
-                .orElseThrow(() -> new IllegalArgumentException("Película no encontrada"));
+        // Obtener la película y la cuenta de usuario usando los ID proporcionados
+        Movie movie = movieRepository.findById(reservationDTO.movieId())
+                .orElseThrow(() -> new IllegalArgumentException("Película no encontrada con ID: " + reservationDTO.movieId()));
 
-        // Obtener la cuenta de usuario por su ID
-        UserAccount userAccount = userAccountRepository.findById(reservationDTO.getUserAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("Cuenta de usuario no encontrada"));
+        UserAccount userAccount = userAccountRepository.findById(reservationDTO.userAccountId())
+                .orElseThrow(() -> new IllegalArgumentException("Cuenta de usuario no encontrada con ID: " + reservationDTO.userAccountId()));
 
-        // Convertir ReservationDTO a Reservation usando el mapper
-        Reservation newReservation = mapper.toEntity(reservationDTO);
+        // Mapear el DTO a la entidad Reservation
+        Reservation reservation = mapper.toEntity(reservationDTO);
 
-        // Establecer la película y la cuenta de usuario en la reserva, ya que no están incluidos en el DTO
-        newReservation.setMovie(movie);
-        newReservation.setUserAccount(userAccount);
+        // Asignar la película y la cuenta de usuario a la reserva
+        reservation.setMovie(movie);
+        reservation.setUserAccount(userAccount);
 
-        // Establecer la fecha actual como fecha de reserva
-        newReservation.setReservationDate(new Date());
+        // Si la fecha de reserva es proporcionada, usarla, de lo contrario, usar la fecha actual
+        reservation.setReservationDate(reservationDTO.reservationDate() != null ? reservationDTO.reservationDate() : new Date());
 
-        // Guardar la nueva reserva en el repositorio y devolverla
-        reservationRepository.save(newReservation);
+        // Guardar la reserva
+        reservationRepository.save(reservation);
     }
 
     public List<ReservationDTO> findAllReservations(){
