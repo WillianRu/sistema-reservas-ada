@@ -5,10 +5,9 @@ import org.adaschool.sistemareservasada.domain.dto.ReservationDTO;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reservation")
@@ -17,5 +16,11 @@ public record ReservationController(ReservationService reservationService) {
     public ResponseEntity<?> registerReservation(@RequestBody ReservationDTO reservationDTO){
         reservationService.createReservation(reservationDTO);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findAllBooking(){
+        List<ReservationDTO> reservations = reservationService.findAllReservations();
+        return new ResponseEntity<>(reservations, HttpStatus.FOUND);
     }
 }

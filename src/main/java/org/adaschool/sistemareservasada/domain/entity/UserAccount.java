@@ -10,8 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name="userAccount", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+
 
 @Getter
 @Setter
@@ -20,6 +19,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 
+@Entity
+@Table(name="userAccount", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class UserAccount implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,7 @@ public class UserAccount implements UserDetails {
     //Relacion uno a muchos: Una usuario puede tener muchas reservas
     @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
+
 
     @Enumerated(EnumType.ORDINAL)
     private ERole role;

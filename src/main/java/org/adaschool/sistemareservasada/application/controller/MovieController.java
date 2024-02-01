@@ -12,7 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/movie")
-public record MovieController(MovieService movieService) {
+public record MovieController(
+        MovieService movieService
+) {
     @PostMapping
     public ResponseEntity<?> registerMovie(@RequestBody MovieDTO movieDTO) {
         movieService.createMovie(movieDTO);
@@ -21,21 +23,14 @@ public record MovieController(MovieService movieService) {
 
     // Devuelve todas las peliculas
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies() {
-        List<Movie> movies = movieService.getAllMovies();
+    public ResponseEntity<List<MovieDTO>> getAllMovies() {
+        List<MovieDTO> movies = movieService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.FOUND);
-    }
-
-    //Devuelve una pelicula acorde a su ID
-    @GetMapping("/{movieId}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable Integer movieId) {
-        Movie movie = movieService.getMovieById(movieId);
-        return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
     //Modifica una pelicula
     @PutMapping("/{movieId}")
-    public ResponseEntity<?> updateMovie(@PathVariable Integer movieId, @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<?> updateMovie(@PathVariable("movieId") Integer movieId, @RequestBody MovieDTO movieDTO) throws Exception {
         movieService.updateMovie(movieId, movieDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
