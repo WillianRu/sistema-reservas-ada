@@ -12,7 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public record AuthenticationService(UserAccountRepository userAccountRepository, JwtService jwtService, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+public record AuthenticationService(
+        UserAccountRepository userAccountRepository,
+        JwtService jwtService,
+        PasswordEncoder passwordEncoder,
+        AuthenticationManager authenticationManager) {
     public String register(UserAccountDTO userAccountDTO) {
         UserAccount userAccount = UserAccount.builder()
                 .name(userAccountDTO.name())
