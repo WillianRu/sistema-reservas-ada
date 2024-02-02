@@ -3,15 +3,15 @@ server:
 
 spring:
   application:
-    name: cinema-db
+    name: cinema
   datasource:
-    password: willianbdb
-    url: jdbc:postgresql://localhost:5432/cinema-db
-    username: postgres
+    password: admin123!
+    url: jdbc:postgresql://localhost:5431/cinema
+    username: user
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:

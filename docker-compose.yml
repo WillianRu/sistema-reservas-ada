@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  database:
+    container_name: database
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: admin123!
+      POSTGRES_DB: cinema
+      PGDATA: /data/postgres
+    volumes:
+      - database:/data/postgres
+    ports:
+      - "5431:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
+
+volumes:
+  database:
