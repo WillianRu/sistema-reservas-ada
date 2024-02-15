@@ -21,7 +21,7 @@ public record ReservationController(ReservationService reservationService) {
     @GetMapping()
     public ResponseEntity<?> findAllReservations(){
         List<ReservationDTO> reservations = reservationService.findAllReservations();
-        return new ResponseEntity<>(reservations, HttpStatus.FOUND);
+        return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
